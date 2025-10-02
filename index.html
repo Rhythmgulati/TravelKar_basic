@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>TravelKar</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="hero">
+    <video src="video.mp4" autoplay loop muted></video>
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1>TravelKar</h1>
+      <p>Enter a place and dates — we’ll fetch essentials, weather, hotels, and activities for you.</p>
+      <form id="searchForm" class="search-form">
+        <div>
+          <label>Destination</label>
+          <input type="text" id="place" placeholder="e.g. Patiala, India" />
+        </div>
+        <div>
+          <label>Start date</label>
+          <input type="date" id="startDate" />
+        </div>
+        <div>
+          <label>End date</label>
+          <input type="date" id="endDate" />
+        </div>
+        <div class="form-buttons">
+          <button type="submit">Search</button>
+          <button type="button" id="clearBtn">Clear</button>
+        </div>
+      </form>
+      <div id="error" class="error"></div>
+    </div>
+  </header>
+
+  <main id="result" class="hidden">
+    <section class="card">
+      <h2 id="placeName"></h2>
+      <p id="placeDesc"></p>
+      <div id="quickFacts"></div>
+      <div id="bestTimes"></div>
+      <div id="tripDates"></div>
+      <div id="gallery" class="gallery"></div>
+    </section>
+
+    <section class="card">
+      <h3>Weather</h3>
+      <div id="weather"></div>
+    </section>
+
+    <section class="card">
+      <h3>Hotels</h3>
+      <div id="hotels" class="grid"></div>
+    </section>
+
+    <section class="card">
+      <h3>Popular activities</h3>
+      <div id="activities" class="grid"></div>
+    </section>
+
+    <footer class="footer">Data aggregated by n8n backend.</footer>
+  </main>
+
+  <div id="cursor"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

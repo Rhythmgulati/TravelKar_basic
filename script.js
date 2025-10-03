@@ -283,7 +283,6 @@ if (data.hotels && Array.isArray(data.hotels)) {
       html += `<div>${h.rating || ""} ★ • from ${h.price || ""}</div>`;
     }
 
-    // Add Book button if URL exists
     if (h.url) {
       html += `<div class="mt-2">
                  <a href="${h.url}" target="_blank" class="book-btn">
@@ -332,6 +331,10 @@ form.addEventListener("submit", async (e) => {
 
   const payload = { place, startDate, endDate };
 
+  const searchBtn = document.getElementById("searchBtn");
+  searchBtn.textContent = "Searching...";
+  searchBtn.disabled = true;
+
   try {
     const res = await fetch(
       "https://n8n-dnv8.onrender.com/webhook/b1a7b181-51e0-4296-a33a-574f7f013b54",
@@ -349,14 +352,14 @@ form.addEventListener("submit", async (e) => {
     }
     const data = await res.json();
     console.log("API response data:", data);
-    
+
     if (data && Array.isArray(data) && data.length > 0 && data[0].output) {
       renderResult(data[0].output);
     } else if (data && typeof data === "object" && data.output) {
       renderResult(data.output);
-    } else if(data ){
+    } else if (data) {
       renderResult(data);
-    }else {
+    } else {
       throw new Error("Invalid response format");
     }
 
@@ -365,6 +368,9 @@ form.addEventListener("submit", async (e) => {
     console.error("Fetch error:", err);
     showError(err.message || "An unknown error occurred");
     renderResult(sampleData);
+  } finally {
+    searchBtn.textContent = "Search";
+    searchBtn.disabled = false;
   }
 });
 

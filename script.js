@@ -23,7 +23,6 @@ function animateCursor() {
 }
 animateCursor();
 
-// A fallback / sample if API fails or before search
 const sampleData = {
     place: "Patiala, India",
     description:
@@ -380,5 +379,9 @@ clearBtn.addEventListener("click", () => {
   endInput.value = "";
   hideError();
   clearResultDisplay();
+  renderResult(sampleData);
+});
+
+document.addEventListener("DOMContentLoaded", () => {
   renderResult(sampleData);
 });
